@@ -1,19 +1,22 @@
 int maxProduct(int* nums, int numsSize) {
-    int current = nums[0];
-    int result = nums[0];
-    int total = nums[0];
-    for(int i=1; i<numsSize; i++){
-        total *= nums[i];
-        if(current*nums[i] > result){
-            result = current * nums[i];
-        }
-        else if(nums[i] > result){
-            result = nums[i];
-        }
-        current = nums[i];
+    if (numsSize == 0) {
+        return 0; 
     }
-    if(total > result){ result = total;}
+    int result = nums[0];
+    int currentMax = nums[0];
+    int currentMin = nums[0];
+    for (int i = 1; i < numsSize; i++) {
+        if (nums[i] < 0) {
+            // Swap currentMax and currentMin when encountering a negative number.
+            int temp = currentMax;
+            currentMax = currentMin;
+            currentMin = temp;
+        }
+        // Update currentMax and currentMin based on the current element.
+        currentMax = (currentMax * nums[i] > nums[i]) ? (currentMax * nums[i]) : nums[i];
+        currentMin = (currentMin * nums[i] < nums[i]) ? (currentMin * nums[i]) : nums[i];
+
+        result = (currentMax > result) ? currentMax : result;
+    }
     return result;
 }
-//132/190 test cases passed
-//Test case: [2,-5,-2,-4,3]

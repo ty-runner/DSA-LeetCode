@@ -6,3 +6,4 @@ int search(int* nums, int numsSize, int target) {
     }
     return -1;
 }
+//just uses linear search, not the best solution, but it works

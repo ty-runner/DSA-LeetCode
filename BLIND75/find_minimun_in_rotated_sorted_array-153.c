@@ -1,11 +1,15 @@
 int findMin(int* nums, int numsSize) {
-    if(numsSize == 0){
+    if(numsSize == 1){
         return nums[0];
     }
-    int min = nums[numsSize/2];
-    int last = nums[0];
-    if(nums[min+1] < min){
-        return nums[min+1];
+    int partition = numsSize/2;
+    int min = nums[partition];
+    int i = 0;
+    while(i < numsSize){
+        if(nums[i] < min){
+            min = nums[i];
+        }
+        i++;
     }
     return min;
 }
